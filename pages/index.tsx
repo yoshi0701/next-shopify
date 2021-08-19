@@ -1,24 +1,18 @@
-
-import type { InferGetStaticPropsType} from "next"
+import type { InferGetStaticPropsType } from "next";
 
 export async function getStaticProps() {
-  const products = [1, 2, 3]
+  const products = [1, 2, 3];
 
   return {
     props: {
-      products
+      products,
     },
-    revalidate: 4 * 60 * 60
-  }
+    revalidate: 4 * 60 * 60,
+  };
 }
 
 export default function Home({
-  products
+  products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
-  return (
-    <div>
-      {products}
-    </div>
-  )
+  return <div>{products}</div>;
 }
