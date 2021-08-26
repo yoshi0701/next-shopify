@@ -1,6 +1,7 @@
 import fetchApi from "../utils/fetch-api";
 
 import getAllProductsQuery from "../utils/queries/get-all-products";
+import { normalizeProduct } from "../utils/normalized";
 
 // get type from schema file
 import { ProductConnection } from "../schema";
@@ -16,7 +17,7 @@ const getAllProducts = async (): Promise<any> => {
 
   const products =
     data.products.edges.map(({ node: product }) => {
-      return product;
+      return normalizeProduct(product);
     }) ?? []; // in case return data is null or undefined
 
   return products;
