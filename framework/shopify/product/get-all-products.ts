@@ -14,8 +14,12 @@ const getAllProducts = async (): Promise<any> => {
     query: getAllProductsQuery,
   });
 
-  // normalize and return new data
-  return data.products;
+  const products =
+    data.products.edges.map(({ node: product }) => {
+      return product;
+    }) ?? []; // in case return data is null or undefined
+
+  return products;
 };
 
 export default getAllProducts;
